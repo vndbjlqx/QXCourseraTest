@@ -1,0 +1,15 @@
+
+<div class="clearBoth">
+  <ul>
+    <li ng-repeat="item in menu.found">
+      <ul>
+         <li><b>Name:</b>{{ item.name }} </li>
+         <li><b>ShortName:</b>{{ item.short_name }} </li>
+         <li><b>Description:</b>{{ item.description }} </li>
+         <li><button ng-click="menu.onRemove({index: $index});">Don't want this one!</button></li>
+      </ul>
+
+    </li>
+  </ul>
+</div>
+<div class="error" ng-if="menu.found.length == 0">Nothing found!</div>
