@@ -8,6 +8,5 @@
   function CategoriesListController(categories) {
     var mainList = this;
     mainList.items = categories;
-    console.log("CategoriesListController mainList.items=",categories);
   }
 })();
