@@ -1,0 +1,52 @@
+<div class=""  ng-controller="RegistrationController as reg">
+  <h2>Please fille in these info to Sign Up, Thanks.</h2>
+   <form  name='regForm' novalidate method="post">
+      <table>
+        <tr>
+          <td>First name:</td>
+          <td>
+            <input type="text" name="firstname"  placeholder="your first name"
+                   ng-model="reg.user.firstname">
+          </td>
+        </tr>
+        <tr>
+          <td>Last name:</td>
+          <td>
+            <input type="text" name="lastname" placeholder="your last name"
+                   ng-model="reg.user.lastname">
+          </td>
+        </tr>
+        <tr>
+          <td>Email address:</td>
+          <td>
+            <input type="email" name="emailaddress" placeholder="your email address"
+                   ng-model="reg.user.emailaddress">
+          </td>
+        </tr>
+        <tr>
+          <td>Phone number:</td>
+          <td>
+            <input type="text" name="phonenumber" placeholder="Phone ###-###-####"
+                   ng-model="reg.user.phonenumber"
+                   pattern="(\d{3})-(\d{3})-(\d{4})">
+        </td>
+        </tr>
+        <tr>
+            <td>Your favorite dish:</td>
+            <td>
+              <input type="text" name="favoritedish" placeholder="your favorite dish"
+                     ng-model="reg.user.favoritedish"
+                    >
+           </td>
+        </tr>
+      </table>
+
+      <div >
+        <button
+          ng-disabled="regForm.$invalid"
+          ng-click="reg.submit()">Submit</button>
+      </div>
+
+   </form>
+
+</div>
