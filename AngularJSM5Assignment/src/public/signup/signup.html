@@ -6,21 +6,48 @@
           <td>First name:</td>
           <td>
             <input type="text" name="firstname"  placeholder="your first name"
-                   ng-model="reg.user.firstname">
+                   ng-model="reg.user.firstname"
+                   required
+                   minlength="4"
+                   ng-maxlength="10"
+                   class="signup_font_black">
+                  <span
+                    ng-if="(regForm.firstname.$error.minlength || regForm.firstname.$error.required) && regForm.firstname.$touched">
+                    First name must be at least 4 characters long
+                  </span>
+                  <span ng-if="regForm.firstname.$error.maxlength && regForm.firstname.$touched">
+                    First name must not be longer than 10 characters
+                  </span>
           </td>
         </tr>
         <tr>
           <td>Last name:</td>
           <td>
             <input type="text" name="lastname" placeholder="your last name"
-                   ng-model="reg.user.lastname">
+                   ng-model="reg.user.lastname"
+                   required
+                   minlength="4"
+                   ng-maxlength="10"
+                   class="signup_font_black">
+                  <span
+                    ng-if="(regForm.lastname.$error.minlength || regForm.lastname.$error.required) && regForm.lastname.$touched">
+                    Last name must be at least 4 characters long
+                  </span>
+                  <span ng-if="regForm.lastname.$error.maxlength && regForm.lastname.$touched">
+                    Last name must not be longer than 10 characters
+                  </span>
           </td>
         </tr>
         <tr>
           <td>Email address:</td>
           <td>
             <input type="email" name="emailaddress" placeholder="your email address"
-                   ng-model="reg.user.emailaddress">
+                   ng-model="reg.user.emailaddress"
+                   required
+                   class="signup_font_black">
+                  <span ng-if="regForm.emailaddress.$invalid && regForm.emailaddress.$touched">
+                    Must be a valid email address: handle@domain format
+                  </span>
           </td>
         </tr>
         <tr>
@@ -28,7 +55,12 @@
           <td>
             <input type="text" name="phonenumber" placeholder="Phone ###-###-####"
                    ng-model="reg.user.phonenumber"
-                   pattern="(\d{3})-(\d{3})-(\d{4})">
+                   required
+                   pattern="(\d{3})-(\d{3})-(\d{4})"
+                   class="signup_font_black">
+                  <span ng-if="regForm.phonenumber.$invalid && regForm.phonenumber.$touched">
+                    Phone must be in the format ###-###-####.
+                  </span>
         </td>
         </tr>
         <tr>
@@ -36,7 +68,10 @@
             <td>
               <input type="text" name="favoritedish" placeholder="your favorite dish"
                      ng-model="reg.user.favoritedish"
-                    >
+                     class="signup_font_black">
+                    <span ng-if="reg.favoritedishError">
+                      No such menu number exists. Please choose one from below List.
+                    </span>
            </td>
         </tr>
       </table>
@@ -44,9 +79,31 @@
       <div >
         <button
           ng-disabled="regForm.$invalid"
-          ng-click="reg.submit()">Submit</button>
+          ng-click="reg.submit()"
+          class="signup_font_black" >Submit</button>
       </div>
 
    </form>
+
+   <div id="info" ng-if="reg.completed">
+     <h3> Your information has been saved as below:</h3>
+     <div class="">
+       Firstname: {{ reg.user.firstname}} <br>
+       Lastname: {{ reg.user.lastname}} <br>
+       Email address: {{ reg.user.emailaddress}} <br>
+       Phone number: {{ reg.user.phonenumber}} <br>
+       Favorite dish: {{ reg.user.favoritedish}}
+     </div>
+  </div>
+  <div  ng-if="reg.favoritedishError">
+    <h3 class="errorMsg">Please choose your favorite dish there:</h3>
+    <div class="">
+      <ul>
+        <li ng-repeat="item in reg.menuItems">
+            Short name: <a ng-click="reg.chooseFavorite(item.short_name)">{{item.short_name}}</a> | Name: {{item.name}}
+        </li>
+      </ul>
+    </div>
+  </div>
 
 </div>

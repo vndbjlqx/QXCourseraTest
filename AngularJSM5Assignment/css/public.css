@@ -183,3 +183,17 @@ h3.menu-item-title {
     width: 100%;
   }
 }
+
+/******* Sign UP page font *******/
+ .signup_font_black {
+   color:black;
+ }
+ .ng-touched.ng-valid {
+   border: 2px green solid;
+ }
+ .ng-touched.ng-invalid{
+   border: 2px red solid;
+ }
+ .errorMsg {
+   color:red:
+ }
